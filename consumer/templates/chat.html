@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чат</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <input id="m" autocomplete="off" /><button id="sendbutton">Send</button>
+    <script>
+        $(document).ready(function(){
+            $('#sendbutton').on('click', function(){
+                $('#messages').append('<li>Я: '+$('#m').val()+'</li>');
+                var temp = $('#m').val();
+                $.get('test.php?msg='+temp, function(response){
+                    $('#messages').append('<li>Grisha: '+response+'</li>');
+                });
+            });
+
+            $('input').on('keydown', function(e) {
+                if (e.which == 13) {
+                    $('#sendbutton').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
