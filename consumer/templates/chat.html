@@ -94,8 +94,8 @@
     </div>    
     <script>
         $(document).ready(function(){
-
-            socket = new WebSocket("ws://" + window.location.host + "/chat/");
+            var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+            socket = new WebSocket(ws_scheme + '://' + window.location.host + "/chat/");
 
             socket.onmessage = function(response) {
               $('#messages').append('<li>Алексей Собещанский: '+response.data+'</li>');
