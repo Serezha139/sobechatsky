@@ -1,4 +1,17 @@
-from django.shortcuts import  render
+# -*- coding: utf-8 -*-
+from django.shortcuts import  render, HttpResponse
+
+def getWordsOfWisdom(text):
+    leshaAnswers = text + u' и че'
+    return leshaAnswers
 
 def index(request):
-    return render(request, 'chat.html', {})
+    text = request.GET.get('text', None)
+    if not text:
+        return render(request, 'chat.html', {})
+    else:
+        wordsOfWisdom = getWordsOfWisdom(text)
+        response =  HttpResponse(wordsOfWisdom)
+        return response
+
+
