@@ -7,7 +7,7 @@ def getWordsOfWisdom(text):
 
 def index(request):
     text = request.GET.get('text', None)
-    if not text:
+    if text is None:
         return render(request, 'chat.html', {})
     else:
         wordsOfWisdom = getWordsOfWisdom(text)
