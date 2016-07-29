@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Чат</title>
+    <title>Незабываемое общение с Алексеем Собещанским</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
@@ -81,10 +81,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <h1>Чат</h1>
+            <h1>Незабываемое общение с Алексеем Собещанским</h1>
             <div class="chat-wrapper">
                 <ul id="messages"></ul>
-                <input placeholder="Введи сообщение СЮДА!" id="m" autocomplete="off" /><a id="sendbutton">Отправить</a>
+                <input placeholder="Ну давай, скажи что-нибудь" id="m" autocomplete="off" /><a id="sendbutton">Отправить</a>
             </div>
         </div>
     </div>
@@ -98,7 +98,7 @@
             socket = new WebSocket("ws://" + window.location.host + "/chat/");
 
             socket.onmessage = function(response) {
-              $('#messages').append('<li>Grisha: '+response.data+'</li>');
+              $('#messages').append('<li>Lesha: '+response.data+'</li>');
             };
             */
             $('.wot').on('click', function(){
@@ -118,13 +118,13 @@
             });
 
             $('#sendbutton').on('click', function(){
-                $('#messages').append('<li>Я: '+$('#m').val()+'</li>');
+                $('#messages').append('<li>Вы: '+$('#m').val()+'</li>');
                 var temp = $('#m').val();
                 $('#m').val('');
                 //socket.send(temp);
                 $.get('?text='+temp, function(response){
                     console.log(response);
-                    $('#messages').append('<li>Grisha: '+response+'</li>');
+                    $('#messages').append('<li>Алексей: '+response+'</li>');
                 });
             });
 
