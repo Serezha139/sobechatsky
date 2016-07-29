@@ -73,8 +73,8 @@
         }
         .wot {
             position: fixed;
-            left: 0px;
-            bottom: 0px;
+            right: 0px;
+            top: 30%;
         }
     </style>
 </head>
@@ -126,6 +126,8 @@
                     console.log(response);
                     $('#messages').append('<li>Алексей: '+response+'</li>');
                 });
+                var elem = document.getElementById('messages');
+                elem.scrollTop = elem.scrollHeight;
             });
 
             $('input').on('keydown', function(e) {
