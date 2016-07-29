@@ -2,10 +2,14 @@
 from django.shortcuts import  render, HttpResponse
 import os
 import random
+import datetime
 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+def myrand(lenghth):
+    return datetime.datetime.now().microsecond / 1000 % lenghth
 
 class Genrikh(object):
     pass
@@ -52,7 +56,7 @@ class AlexeySabiashchanski(Igor):
         responses = []
         for cat in catsForAnswer:
             answerList = self.categories[cat]
-            ansIndex = random.randint(0, len(answerList) - 1)
+            ansIndex = myrand(len(answerList))
             responses.append(answerList[ansIndex])
 
         wordsOfWisdom = '. '.join(responses)
