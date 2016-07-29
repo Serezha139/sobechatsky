@@ -32,17 +32,17 @@ class AlexeySabiashchanski(Igor):
                 lines = f.readlines()
                 values = [u'%s' % line.strip() for line in lines]
             if cat.endswith('_ini'):
-                self.initWords[cat[:-4]] = set(values)
+                self.initWords[cat[:-4]] = {value.lower() for value in values}
             else:
                 self.categories[cat] = values
 
     def getWordsOfWisdom(self, text):
 
-        words = {u'%s' % word.strip() for word in text.split(' ')}
+        words = {u'%s' % word.strip().lower() for word in text.split(' ')}
         catsMatched = 0
         catsForAnswer = []
         for cat in self.initWords.keys():
-            if self.initWords[cat].intersection(words):
+            if self.initWords[cat] & words:
                 catsForAnswer.append(cat)
                 catsMatched += 1
             if catsMatched == 2:
