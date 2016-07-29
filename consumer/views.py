@@ -42,7 +42,7 @@ class AlexeySabiashchanski(Igor):
 
     def getWordsOfWisdom(self, text):
 
-        words = {u'%s' % word.strip().lower() for word in text.split(' ')}
+        words = {u'%s' % word.strip().lower().replace('?', '') for word in text.split(' ')}
         catsMatched = 0
         catsForAnswer = []
         for cat in self.initWords.keys():
