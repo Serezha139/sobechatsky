@@ -68,8 +68,9 @@ class AlexeySabiashchanski(Igor):
         responses = []
         for cat in catsForAnswer:
             answerList = self.categories[cat]
-            ansIndex = myrand(len(answerList))
-            responses.append(answerList[ansIndex])
+            random.shuffle(answerList)
+            response = answerList[0]
+            responses.append(response)
 
         wordsOfWisdom = '. '.join(responses)
         return wordsOfWisdom
