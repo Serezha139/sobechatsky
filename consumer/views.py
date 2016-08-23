@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import  render, HttpResponse
 import os
+from models import Reaction
 import random
 import datetime
 
@@ -8,13 +9,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-def myrand(lenghth):
-    return datetime.datetime.now().microsecond / 1000 % lenghth
+def myrand(length):
+    return datetime.datetime.now().microsecond / 1000 % length
 
-class Genrikh(object):
+class Gustav(object):
     pass
 
-class Richard(Genrikh):
+class Richard(Gustav):
     pass
 
 class Igor(Richard):
@@ -26,6 +27,7 @@ class AlexeySabiashchanski(Igor):
 
         self.initWords = {}
         self.loadDictionary()
+        self.loadDictionaryFromBase()
 
     def loadDictionary(self):
         fileList = os.listdir('consumer/cats')
@@ -40,8 +42,18 @@ class AlexeySabiashchanski(Igor):
             else:
                 self.categories[cat] = values
 
-    def getWordsOfWisdom(self, text):
+    def loadDictionaryFromBase(self):
+        reactions = Reaction.objects.all()
+        for reaction in reactions:
+            cat = reaction.ini.lower()
+            if cat not in self.initWords.keys():
+                self.initWords[cat] = set([cat,])
+                self.categories[cat] = [reaction.ans,]
+            else:
+                self.initWords[cat].add(cat)
+                self.categories[cat].append(reaction.ans)
 
+    def getWordsOfWisdom(self, text):
         words = {u'%s' % word.strip().lower().replace('?', '') for word in text.split(' ')}
         catsMatched = 0
         catsForAnswer = []
