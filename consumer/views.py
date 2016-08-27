@@ -54,6 +54,7 @@ class AlexeySabiashchanski(Igor):
                 self.categories[cat].append(reaction.ans)
 
     def getWordsOfWisdom(self, text):
+        print text
         words = {u'%s' % word.strip().lower().replace('?', '') for word in text.split(' ')}
         catsMatched = 0
         catsForAnswer = []
@@ -73,6 +74,7 @@ class AlexeySabiashchanski(Igor):
             responses.append(response)
 
         wordsOfWisdom = '. '.join(responses)
+        print wordsOfWisdom
         return wordsOfWisdom
 
 # while True:
